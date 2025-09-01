@@ -5,24 +5,39 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity Web Player | GodlMine</title>
     <style>
-      body {
+      body, html {
         margin: 0;
         padding: 0;
+        height: 100%;
         overflow: hidden;
         background: #231F20;
       }
+
+      #unity-container {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 100%;
+        width: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
       #unity-canvas {
-        width: 100vw;
-        height: 100vw; /* height = width (square) */
-        max-height: 100vh; /* don’t overflow vertical space */
-        display: block;
-        margin: 0 auto;
+        height: 100%;
+        width: auto; /* width auto-scales */
         background: #231F20;
+        display: block;
       }
     </style>
   </head>
   <body>
-    <canvas id="unity-canvas" tabindex="-1"></canvas>
+    <div id="unity-container">
+      <canvas id="unity-canvas" tabindex="-1"></canvas>
+    </div>
+
     <script src="Build/TestBuild_0.0.1.loader.js"></script>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
@@ -32,6 +47,18 @@
           'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
       }
+
+      function resizeUnityCanvas() {
+        const canvas = document.getElementById("unity-canvas");
+        const browserHeight = window.innerHeight;
+        const aspectRatio = 1080 / 1920;
+
+        canvas.style.height = browserHeight + "px";
+        canvas.style.width = Math.round(browserHeight * aspectRatio) + "px";
+      }
+
+      window.addEventListener("resize", resizeUnityCanvas);
+      resizeUnityCanvas();
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
         arguments: [],
