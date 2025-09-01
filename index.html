@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ht<!DOCTYPE html>
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
@@ -17,7 +17,7 @@
 
       #unity-canvas {
         height: auto;
-        width: calc(0.5625 * 100vh); /* 9:16 ratio */
+        width: calc(0.5625 * height); /* 9:16 ratio */
         background: #231F20;
         display: block;
         margin: 0 auto;
@@ -31,7 +31,7 @@
       function resizeCanvas() {
         const canvas = document.getElementById("unity-canvas");
         canvas.style.height = window.innerHeight + "px";
-        canvas.style.width = (window.innerHeight * 0.5625) + "px"; // width = 0.5625 * height
+        canvas.style.width = (canvas.style.height * 0.5625) + "px"; // width = 0.5625 * height
       }
 
       window.addEventListener("resize", resizeCanvas);
