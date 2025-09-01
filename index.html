@@ -8,7 +8,8 @@
       body, html {
         margin: 0;
         padding: 0;
-        height: 100%;
+        height: auto;
+        width: height * 0.5625;
         overflow: hidden;
         background: #231F20;
       }
@@ -18,16 +19,16 @@
         top: 0;
         left: 50%;
         transform: translateX(-50%);
-        height: 100%;
-        width: auto;
+        height: auto%;
+        width: height * 0.5625;
         display: flex;
         align-items: center;
         justify-content: center;
       }
 
       #unity-canvas {
-        height: 100%;
-        width: auto; /* width auto-scales */
+        height: auto;
+        width: width: height * 0.5625; /* width auto-scales */
         background: #231F20;
         display: block;
       }
